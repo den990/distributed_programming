@@ -72,7 +72,7 @@ public class IndexModel : PageModel
         int nonAlphabeticCount = text.Count(c => !IsAlphabetic(c));
         int totalCharacters = text.Length;
 
-        return 1.0 - ((double)nonAlphabeticCount / totalCharacters);
+        return ((double)nonAlphabeticCount / totalCharacters);
     }
 
     private static bool IsAlphabetic(char c)
