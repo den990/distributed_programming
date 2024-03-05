@@ -25,6 +25,7 @@ public class IndexModel : PageModel
     {
         _logger.LogDebug(text);
 
+
         string id = Guid.NewGuid().ToString();
 
         string textKey = "TEXT-" + id;
@@ -49,7 +50,7 @@ public class IndexModel : PageModel
     {
         foreach (var key in _redis.GetServer(_redis.GetEndPoints()[0]).Keys())
         {
-            if (key.ToString().StartsWith("TEXT-") && !key.ToString().EndsWith(currentId) && string.IsNullOrEmpty(text))
+            if (key.ToString().StartsWith("TEXT-") && !key.ToString().EndsWith(currentId) && !string.IsNullOrEmpty(text))
             {
                 string storedText = _redis.GetDatabase().StringGet(key);
                 if (text.Equals(storedText, StringComparison.OrdinalIgnoreCase))
