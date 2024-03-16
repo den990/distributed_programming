@@ -1,5 +1,12 @@
 @echo off
 echo Starting web application on port 5001...
+
+echo Start Nats server
+start start "" /D "D:\nats" nats-server.exe
+
+cd ../CalculateRank
+start "" dotnet run
+
 cd ../Valuator
 start "" dotnet run --urls "http://127.0.0.1:5001"
 
